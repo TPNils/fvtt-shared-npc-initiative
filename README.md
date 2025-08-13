@@ -10,8 +10,8 @@ When rolling initiative for NPCs, ensure that the NPCs that are of the same type
 
 ## DnD5e
 The DND system natively groups the actors for you visually.  
-![dnd5e](./assets/dnd5e.jpg)
+![dnd5e](/assets/dnd5e.jpg)
 
 ## PF1e
 As I don't play PF1e, I simply checked if it's compatible and it seems to be (without knowing anything about the system).  
-![pf1e](./assets/pf1e.jpg)
+![pf1e](/assets/pf1e.jpg)
