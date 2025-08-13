@@ -27,7 +27,24 @@
   "relationships": {
     "requires": [],
     "recommends": [],
-    "systems": []
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "5.0.0",
+          "verified": "5.0.4"
+        }
+      },
+      {
+        "id": "pf1",
+        "type": "system",
+        "compatibility": {
+          "minimum": "11",
+          "verified": "11.8"
+        }
+      }
+    ]
   },
   "socket": false
 }
