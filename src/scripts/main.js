@@ -31,6 +31,20 @@ function initiativeRoll(combatant, rollCb) {
     // placeholder combatants, maybe also other usecases?
     return rollCb();
   }
+  for (const combatant of game.combat.combatants.values()) {
+    if (typeof combatant.initiative !== 'number') {
+      continue;
+    }
+    if (combatant.token?.baseActor.uuid === worldActor.uuid) {
+      rollData.options.fixed = combatant.initiative;
+      // Purely visual so the user doesn't think the roll happened twice
+      // Can't rely on it though as this sync function can be called before the first async roll resolved
+      // This method is also persistent
+      return new Roll(`${roll.total}`);
+    }
+  }
+
+  // Account for initiativeRoll calls happening before the first was resolved
   if (!combatant.combat[cache][baseUuid]) {
     combatant.combat[cache][baseUuid] = rollCb();
     /** @type {Function} */
@@ -45,11 +59,6 @@ function initiativeRoll(combatant, rollCb) {
   }
   /** @type {Roll} */
   const roll = combatant.combat[cache][baseUuid];
-  if (roll._evaluated) {
-    // Purely visual so the user doesn't think the roll happened twice
-    // Can't rely on it though as this sync function can be called before the first async roll resolved
-    return new Roll(`${roll.total}`);
-  }
   return roll;
 }
 
@@ -58,6 +67,7 @@ Hooks.on('init', () => {
   const originalFetInitiativeRoll = CONFIG.Combatant.documentClass.prototype.getInitiativeRoll;
   /** @this {Combatant} */
   CONFIG.Combatant.documentClass.prototype.getInitiativeRoll = function(...args) {
+    console.log(this);
     if (this.actor?.type !== 'npc') {
       return originalFetInitiativeRoll.call(this, ...args)
     }
