@@ -17,6 +17,23 @@
  * @property {Actor} subject
  */
 
+// Skip the roll prompt for dnd5e
+Hooks.on(`dnd5e.preConfigureInitiative`, (/** @type {Actor} */actor, /** @type {InitiativeRollData} */rollData) => {
+  if (actor.type !== 'npc' || !game.combat) {
+    return;
+  }
+  let worldActor = actor.isToken ? actor.token?.baseActor : actor;
+  for (const combatant of game.combat.combatants.values()) {
+    if (typeof combatant.initiative !== 'number') {
+      continue;
+    }
+    if (combatant.token?.baseActor.uuid === worldActor.uuid) {
+      rollData.options.fixed = combatant.initiative;
+      return;
+    }
+  }
+})
+
 const cache = Symbol('shared-npc-initiative cache')
 
 /** 
