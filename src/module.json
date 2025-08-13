@@ -23,13 +23,7 @@
     "scripts/main.js"
   ],
   "styles": [],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-  ],
+  "languages": [],
   "relationships": {
     "requires": [],
     "recommends": [],
