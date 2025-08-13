@@ -35,12 +35,11 @@ function initiativeRoll(combatant, rollCb) {
     if (typeof combatant.initiative !== 'number') {
       continue;
     }
-    if (combatant.token?.baseActor.uuid === worldActor.uuid) {
-      rollData.options.fixed = combatant.initiative;
+    if (combatant.token?.baseActor.uuid === baseUuid) {
       // Purely visual so the user doesn't think the roll happened twice
       // Can't rely on it though as this sync function can be called before the first async roll resolved
       // This method is also persistent
-      return new Roll(`${roll.total}`);
+      return new Roll(`${combatant.initiative}`);
     }
   }
 
