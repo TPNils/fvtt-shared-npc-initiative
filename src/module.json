@@ -1,0 +1,36 @@
+{
+  "id": "shared-npc-initiative",
+  "title": "Shared NPC initiative",
+  "version": "v0.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "description": "",
+  "authors": [
+    {
+      "name": "TPNils"
+    }
+  ],
+  "bugs": "",
+  "flags": {
+    "hbsFiles": []
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "relationships": {
+    "requires": [],
+    "recommends": [],
+    "systems": []
+  },
+  "socket": false
+}

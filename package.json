@@ -1,0 +1,25 @@
+{
+  "name": "shared-npc-initiative",
+  "version": "v0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "foundry-vtt-build-tools build",
+    "package": "foundry-vtt-build-tools buildZip",
+    "compileReadme": "foundry-vtt-build-tools compileReadme",
+    "badges": "foundry-vtt-build-tools badges",
+    "dev": "foundry-vtt-build-tools watch",
+    "dev13": "foundry-vtt-build-tools watch -fi v13",
+    "patch": "foundry-vtt-build-tools publish -u patch",
+    "minor": "foundry-vtt-build-tools publish -u minor",
+    "major": "foundry-vtt-build-tools publish -u major",
+    "reupload": "foundry-vtt-build-tools reupload",
+    "updateZipManifestForGithub": "foundry-vtt-build-tools updateZipManifestForGithub",
+    "updateExternalManifestForGithub": "foundry-vtt-build-tools updateExternalManifestForGithub"
+  },
+  "author": "",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "foundry-vtt-build-tools": "github:TPNils/foundry-vtt-build-tools#v0.3.2",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#v13.341.1"
+  }
+}
