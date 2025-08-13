@@ -67,7 +67,6 @@ Hooks.on('init', () => {
   const originalFetInitiativeRoll = CONFIG.Combatant.documentClass.prototype.getInitiativeRoll;
   /** @this {Combatant} */
   CONFIG.Combatant.documentClass.prototype.getInitiativeRoll = function(...args) {
-    console.log(this);
     if (this.actor?.type !== 'npc') {
       return originalFetInitiativeRoll.call(this, ...args)
     }
