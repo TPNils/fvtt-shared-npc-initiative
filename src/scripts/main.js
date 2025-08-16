@@ -22,6 +22,12 @@ Hooks.on(`dnd5e.preConfigureInitiative`, (/** @type {Actor} */actor, /** @type {
   if (actor.type !== 'npc' || !game.combat) {
     return;
   }
+  for (const combatant of game.combat.combatants.values()) {
+    if (combatant.actor?.uuid === actor.uuid && typeof combatant.initiative === 'number') {
+      // re-roll initiative
+      return;
+    }
+  }
   let worldActor = actor.isToken ? actor.token?.baseActor : actor;
   for (const combatant of game.combat.combatants.values()) {
     if (typeof combatant.initiative !== 'number') {
@@ -42,7 +48,12 @@ const cache = Symbol('shared-npc-initiative cache')
  * @returns {Roll}
  */
 function initiativeRoll(combatant, rollCb) {
+  if (typeof combatant.initiative === 'number') {
+    // re-roll initiative
+    return rollCb();
+  }
   combatant.combat[cache] ??= {};
+  
   const baseUuid = combatant.token?.baseActor.uuid;
   if (!baseUuid) {
     // placeholder combatants, maybe also other usecases?
