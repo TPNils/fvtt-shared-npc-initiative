@@ -6,7 +6,11 @@
 ![GitHub license](https://img.shields.io/github/license/TPNils/fvtt-shared-npc-initiative?style=flat)
 
 # Shared NPC initiative
-When rolling initiative for NPCs, ensure that the NPCs that are of the same type get the same initiative.
+When rolling initiative for NPCs, ensure that the NPCs that are of the same type get the same initiative. This can be toggled off.
+
+## Re-roll initiative
+Using "Re-roll initiative" will always ignore the shared initiative and generate a new roll.  
+![Re-roll initiative](/assets/re-roll-initiative.jpg)
 
 ## DnD5e
 The DND system natively groups the actors for you visually.  
