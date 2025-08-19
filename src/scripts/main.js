@@ -59,15 +59,15 @@ function initiativeRoll(combatant, rollCb) {
     // placeholder combatants, maybe also other usecases?
     return rollCb();
   }
-  for (const combatant of combatant.combat.combatants.values()) {
-    if (typeof combatant.initiative !== 'number') {
+  for (const c of combatant.combat.combatants.values()) {
+    if (typeof c.initiative !== 'number') {
       continue;
     }
-    if (combatant.token?.baseActor.uuid === baseUuid) {
+    if (c.token?.baseActor.uuid === baseUuid) {
       // Purely visual so the user doesn't think the roll happened twice
       // Can't rely on it though as this sync function can be called before the first async roll resolved
       // This method is also persistent
-      return new Roll(`${combatant.initiative}`);
+      return new Roll(`${c.initiative}`);
     }
   }
 
