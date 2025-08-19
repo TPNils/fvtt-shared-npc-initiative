@@ -1,6 +1,6 @@
 {
   "name": "shared-npc-initiative",
-  "version": "v1.0.1",
+  "version": "v1.1.0",
   "main": "index.js",
   "scripts": {
     "build": "foundry-vtt-build-tools build",

@@ -1,7 +1,7 @@
 {
   "id": "shared-npc-initiative",
   "title": "Shared NPC initiative",
-  "version": "v1.0.1",
+  "version": "v1.1.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -14,7 +14,7 @@
   ],
   "url": "https://github.com/TPNils/fvtt-shared-npc-initiative",
   "manifest": "https://github.com/TPNils/fvtt-shared-npc-initiative/releases/download/latest/module.json",
-  "download": "https://github.com/TPNils/fvtt-shared-npc-initiative/releases/download/v1.0.1/module.zip",
+  "download": "https://github.com/TPNils/fvtt-shared-npc-initiative/releases/download/v1.1.0/module.zip",
   "bugs": "",
   "flags": {
     "hbsFiles": []
