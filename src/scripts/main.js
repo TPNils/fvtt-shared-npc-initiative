@@ -1,3 +1,5 @@
+const MODULE = `shared-npc-initiative`;
+
 /**
  * @typedef {object} InitiativeRollDataOptions
  * @property {-1 | 0 | 1} advantageMode
@@ -22,6 +24,10 @@ Hooks.on(`dnd5e.preConfigureInitiative`, (/** @type {Actor} */actor, /** @type {
   if (actor.type !== 'npc' || !game.combat) {
     return;
   }
+  if (game.combat.getFlag(MODULE, 'disabled') ?? false) {
+    // disabled
+    return;
+  }
   for (const combatant of game.combat.combatants.values()) {
     if (combatant.actor?.uuid === actor.uuid && typeof combatant.initiative === 'number') {
       // re-roll initiative
@@ -40,6 +46,34 @@ Hooks.on(`dnd5e.preConfigureInitiative`, (/** @type {Actor} */actor, /** @type {
   }
 })
 
+//#region Toggle shared initiative UI
+Hooks.on('renderCombatTracker', (combatTracker, /**@type {HTMLElement}*/htmlElement, data, arg3) => {
+  const isDisabled = game.combat.getFlag(MODULE, 'disabled') ?? false;
+  const toggleContainer = document.createElement(`div`);
+  const toggleLabel = document.createElement('label');
+  const toggleInput = document.createElement('input');
+  toggleInput.setAttribute('type', 'checkbox');
+  if (!isDisabled) {
+    toggleInput.setAttribute('checked', '');
+  }
+  const combatId = game.combat.id;
+  toggleInput.addEventListener('change', async () => {
+    const combat = game.combats.get(combatId);
+    if (!combat) {
+      return;
+    }
+    toggleInput.disabled = true;
+    await combat.setFlag(MODULE, 'disabled', !toggleInput.checked);
+    toggleInput.disabled = false;
+  })
+  toggleLabel.append(`${game.i18n.format(`TYPES.Actor.group`)} ${game.i18n.format(`DND5E.NPC.Label`)}`, toggleInput)
+  toggleContainer.append(toggleLabel);
+
+  const htmlHeader = htmlElement.querySelector(`.combat-tracker-header`);
+  htmlHeader.append(toggleContainer);
+})
+//#endregion 
+
 const cache = Symbol('shared-npc-initiative cache')
 
 /** 
@@ -48,6 +82,10 @@ const cache = Symbol('shared-npc-initiative cache')
  * @returns {Roll}
  */
 function initiativeRoll(combatant, rollCb) {
+  if (combatant.combat.getFlag(MODULE, 'disabled') ?? false) {
+    // disabled
+    return rollCb();
+  }
   if (typeof combatant.initiative === 'number') {
     // re-roll initiative
     return rollCb();
