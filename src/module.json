@@ -20,7 +20,7 @@
     "hbsFiles": []
   },
   "esmodules": [
-    "scripts/main.js"
+    "scripts/index.js"
   ],
   "styles": [],
   "languages": [],

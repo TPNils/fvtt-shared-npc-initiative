@@ -1,0 +1,1 @@
+export const MODULE = `shared-npc-initiative`;
