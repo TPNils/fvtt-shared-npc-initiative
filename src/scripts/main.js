@@ -59,7 +59,7 @@ function initiativeRoll(combatant, rollCb) {
     // placeholder combatants, maybe also other usecases?
     return rollCb();
   }
-  for (const combatant of game.combat.combatants.values()) {
+  for (const combatant of combatant.combat.combatants.values()) {
     if (typeof combatant.initiative !== 'number') {
       continue;
     }
