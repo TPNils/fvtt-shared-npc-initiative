@@ -66,7 +66,13 @@ Hooks.on('renderCombatTracker', (combatTracker, /**@type {HTMLElement}*/htmlElem
     await combat.setFlag(MODULE, 'disabled', !toggleInput.checked);
     toggleInput.disabled = false;
   })
-  toggleLabel.append(`${game.i18n.format(`TYPES.Actor.group`)} ${game.i18n.format(`DND5E.NPC.Label`)}`, toggleInput)
+  let label;
+  if (game.i18n.has(`TYPES.Actor.group`) && game.i18n.has(`DND5E.NPC.Label`)) {
+    label = `${game.i18n.format(`TYPES.Actor.group`)} ${game.i18n.format(`DND5E.NPC.Label`)}`;
+  } else {
+    label = `Group NPC`;
+  }
+  toggleLabel.append(label, toggleInput)
   toggleContainer.append(toggleLabel);
 
   const htmlHeader = htmlElement.querySelector(`.combat-tracker-header`);
