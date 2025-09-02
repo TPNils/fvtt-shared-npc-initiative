@@ -1,6 +1,9 @@
 import { MODULE } from "./const.js";
 
 Hooks.on('renderCombatTracker', (combatTracker, /**@type {HTMLElement}*/htmlElement, data, arg3) => {
+  if (game.combat == null ) {
+    return;
+  }
   const isDisabled = game.combat.getFlag(MODULE, 'disabled') ?? false;
   const toggleContainer = document.createElement(`div`);
   const toggleLabel = document.createElement('label');

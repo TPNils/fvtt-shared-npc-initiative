@@ -24,7 +24,7 @@ Hooks.on(`dnd5e.preConfigureInitiative`, (/** @type {Actor} */actor, /** @type {
   if (actor.type !== 'npc' || !game.combat) {
     return;
   }
-  if (game.combat.getFlag(MODULE, 'disabled') ?? false) {
+  if (game.combat?.getFlag(MODULE, 'disabled') ?? false) {
     // disabled
     return;
   }
